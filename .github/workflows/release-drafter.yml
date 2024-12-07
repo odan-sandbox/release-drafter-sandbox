@@ -20,7 +20,7 @@ jobs:
         run: |
           TITLE=$(gh issue view 5 --json "title" --jq ".title")
           VERSION=${TITLE#Next version: }
-          echo 'tag=$VERSION' >> $GITHUB_OUTPUT
+          echo "tag=$VERSION" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
