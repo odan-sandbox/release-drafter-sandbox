@@ -36,6 +36,10 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: Get tag
+        id: get-tag
+        run: echo 'result="202412' >> $GITHUB_OUTPUT
+
       - uses: release-drafter/release-drafter@v6
         id: release-drafter
         with:
@@ -44,7 +48,9 @@ jobs:
           prerelease: true
           latest: false
           prerelease-identifier: "alpha"
+          tag: ${{ steps.get-tag.outputs.result }}
+          header: |
+            ## Info
+            tag: ${{ steps.get-tag.outputs.result }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - run: echo "${{ steps.release-drafter.outputs.tag_name }}"
