@@ -35,7 +35,6 @@ jobs:
         with:
           disable-autolabeler: false
           tag: ${{ needs.get-tag.outputs.tag }}
-          name: ${{ needs.get-tag.outputs.tag }}
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,7 +55,6 @@ jobs:
           latest: false
           prerelease-identifier: "alpha"
           tag: ${{ needs.get-tag.outputs.tag }}
-          name: ${{ needs.get-tag.outputs.tag }}
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
