@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Get tag
         id: get-tag
-        run: echo 'result="202412' >> $GITHUB_OUTPUT
+        run: echo 'result=202412' >> $GITHUB_OUTPUT
 
       - uses: release-drafter/release-drafter@v6
         id: release-drafter
@@ -52,5 +52,6 @@ jobs:
           header: |
             ## Info
             tag: ${{ steps.get-tag.outputs.result }}
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
