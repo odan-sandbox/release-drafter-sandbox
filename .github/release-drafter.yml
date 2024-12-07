@@ -1,4 +1,5 @@
-name-template: Draft of release $RESOLVED_VERSION
+name-template: "Release $RESOLVED_VERSION"
+tag-template: "$RESOLVED_VERSION"
 template: |
   ## Changes
 
