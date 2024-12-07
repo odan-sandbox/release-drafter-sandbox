@@ -35,6 +35,7 @@ jobs:
         id: release-drafter
         with:
           disable-autolabeler: false
+          name: "Release ${{ needs.get-tag.outputs.tag }}"
           tag: ${{ needs.get-tag.outputs.tag }}
           version: ${{ needs.get-tag.outputs.tag }}
         env:
@@ -59,6 +60,7 @@ jobs:
           prerelease: true
           latest: false
           prerelease-identifier: "alpha"
+          name: "Alpha Release ${{ needs.get-tag.outputs.tag }}"
           tag: ${{ needs.get-tag.outputs.tag }}
           version: ${{ needs.get-tag.outputs.tag }}
         env:
