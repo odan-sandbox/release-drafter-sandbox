@@ -14,6 +14,7 @@ jobs:
     outputs:
       tag: ${{ steps.get-tag.outputs.tag }}
     steps:
+      - uses: actions/checkout@v4
       - name: Get tag
         id: get-tag
         run: |
