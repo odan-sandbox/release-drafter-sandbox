@@ -1,4 +1,4 @@
-name-template: Draft of alpha release
+name-template: Draft of alpha release $RESOLVED_VERSION
 template: |
   ## Prerelease Changes 
 
