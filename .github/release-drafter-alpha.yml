@@ -3,3 +3,4 @@ template: |
 
   $CHANGES
 commitish: refs/heads/main
+tag-prefix: alpha
