@@ -37,10 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v6
+        id: release-drafter
         with:
           disable-autolabeler: false
           config-name: release-drafter-alpha.yml
           prerelease: true
           latest: false
+          prerelease-identifier: "alpha"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: echo "${{ steps.release-drafter.outputs.tag_name }}"

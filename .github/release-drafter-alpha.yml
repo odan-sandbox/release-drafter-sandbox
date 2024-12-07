@@ -1,5 +1,8 @@
 name-template: Draft of alpha release
 template: |
+  ## Version
+  $MY_VERSION
+
   ## Prerelease Changes 
 
   $CHANGES

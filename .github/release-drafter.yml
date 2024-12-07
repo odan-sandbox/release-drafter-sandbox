@@ -1,6 +1,6 @@
 name-template: Draft of release
 template: |
-  ## What’s Changed
+  ## Changes
 
   $CHANGES
 commitish: refs/heads/main
