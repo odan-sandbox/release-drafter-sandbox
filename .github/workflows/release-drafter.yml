@@ -47,7 +47,7 @@ jobs:
       - uses: release-drafter/release-drafter@v6
         with:
           disable-autolabeler: false
-          config-name: .github/release-drafter-alpha.yml
+          config-name: release-drafter-alpha.yml
           prerelease: true
           latest: false
         env:
