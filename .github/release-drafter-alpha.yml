@@ -1,7 +1,7 @@
 name-template: "Alpha release $RESOLVED_VERSION"
 tag-template: "$RESOLVED_VERSION"
 template: |
-  ## Prerelease Changes 
+  ## Changes 
 
   $CHANGES
 commitish: refs/heads/main
