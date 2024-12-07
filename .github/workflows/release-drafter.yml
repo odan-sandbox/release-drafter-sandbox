@@ -61,7 +61,7 @@ jobs:
           latest: false
           prerelease-identifier: "alpha"
           name: "Alpha Release ${{ needs.get-tag.outputs.tag }}"
-          tag: ${{ needs.get-tag.outputs.tag }}
+          tag: "_${{ needs.get-tag.outputs.tag }}-alpha"
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
