@@ -51,7 +51,7 @@ jobs:
           tag: ${{ steps.get-tag.outputs.result }}
           header: |
             ## Info
-            tag: ${{ steps.get-tag.outputs.result }}
+            tag: ${{ steps.get-tag.outputs.result }} \n
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
