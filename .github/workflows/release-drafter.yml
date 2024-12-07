@@ -32,12 +32,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v6
+        id: release-drafter
         with:
           disable-autolabeler: false
           tag: ${{ needs.get-tag.outputs.tag }}
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: |
+          echo "${{ steps.release-drafter.outputs.resolved_version }}"
+          echo "${{ steps.release-drafter.outputs.tag_name }}"
 
   update_release_draft_prerelease:
     needs: [get-tag]
@@ -58,3 +63,7 @@ jobs:
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: |
+          echo "${{ steps.release-drafter.outputs.resolved_version }}"
+          echo "${{ steps.release-drafter.outputs.tag_name }}"
