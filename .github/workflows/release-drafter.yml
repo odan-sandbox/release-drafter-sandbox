@@ -9,37 +9,38 @@ permissions:
   contents: read
 
 jobs:
+  get-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get-tag.outputs.tag }}
+    steps:
+      - name: Get tag
+        id: get-tag
+        run: |
+          TITLE=$(gh issue view 5 --json "title" --jq ".title")
+          VERSION=${TITLE#Next version: }
+          echo 'tag=$VERSION' >> $GITHUB_OUTPUT
   update_release_draft:
+    needs: [get-tag]
     permissions:
-      # write permission is required to create a github release
       contents: write
-      # write permission is required for autolabeler
-      # otherwise, read permission is required at least
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      # (Optional) GitHub Enterprise requires GHE_HOST variable set
-      #- name: Set GHE_HOST
-      #  run: |
-      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
-
-      # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v6
         with:
           disable-autolabeler: false
+          tag: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   update_release_draft_prerelease:
+    needs: [get-tag]
     permissions:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - name: Get tag
-        id: get-tag
-        run: echo 'result=202412' >> $GITHUB_OUTPUT
-
       - uses: release-drafter/release-drafter@v6
         id: release-drafter
         with:
@@ -48,10 +49,8 @@ jobs:
           prerelease: true
           latest: false
           prerelease-identifier: "alpha"
-          tag: ${{ steps.get-tag.outputs.result }}
-          header: |
-            ## Info
-            tag: ${{ steps.get-tag.outputs.result }} \n
-
+          tag: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: echo "${{ steps.release-drafter.outputs.tag_name}}"
