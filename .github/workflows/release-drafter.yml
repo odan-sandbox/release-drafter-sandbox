@@ -58,5 +58,3 @@ jobs:
           version: ${{ needs.get-tag.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - run: echo "${{ toJson(steps.release-drafter.outputs) }}"
